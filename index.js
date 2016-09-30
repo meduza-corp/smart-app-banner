@@ -4,6 +4,7 @@ var doc = require('get-doc');
 var root = doc && doc.documentElement;
 var cookie = require('cookie-cutter');
 var ua = require('ua-parser-js');
+var isWebview = require('is-webview');
 
 // IE < 11 doesn't support navigator language property.
 var userLangAttribute = navigator.language || navigator.userLanguage || navigator.browserLanguage;
@@ -72,7 +73,7 @@ var SmartBanner = function(options) {
 	// - running on standalone mode
 	// - user dismissed banner
 	if (!this.type
-		|| ( this.type === 'ios' && agent.browser.name === 'Mobile Safari' && parseInt(agent.os.version) >= 6 )
+		|| ( this.type === 'ios' && agent.browser.name === 'Mobile Safari' && isWebview(navigator.userAgent)/* && parseInt(agent.os.version) >= 6*/)
 		|| navigator.standalone
 		|| cookie.get('smartbanner-closed')
 		|| cookie.get('smartbanner-installed')) {
