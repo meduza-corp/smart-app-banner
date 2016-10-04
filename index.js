@@ -101,7 +101,7 @@ SmartBanner.prototype = {
 
 	create: function() {
 		var link = this.options.link[this.type];
-		var inStore = this.options.price[this.type] + ' - ' + this.options.store[this.type];
+		var inStore = this.options.price[this.type] + ' — ' + this.options.store[this.type];
 		var icon;
 
 		if (this.options.icon) {
