@@ -75,7 +75,7 @@ var SmartBanner = function(options) {
 	var isClosed = cookie.get('smartbanner-closed-' + this.options.uniqueId);
 	var isInstalled = cookie.get('smartbanner-installed-' + this.options.uniqueId);
 	if (!this.type
-		|| ( this.type === 'ios' && agent.browser.name === 'Mobile Safari' && isWebview(navigator.userAgent)/* && parseInt(agent.os.version) >= 6*/)
+		|| ( this.type === 'ios' && agent.browser.name === 'Mobile Safari' && !window.navigator.standalone/* && parseInt(agent.os.version) >= 6*/)
 		|| navigator.standalone
 		|| isClosed
 		|| isInstalled) {
