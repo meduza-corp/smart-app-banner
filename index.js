@@ -72,11 +72,13 @@ var SmartBanner = function(options) {
 	// - user is on mobile safari for ios 6 or greater (iOS >= 6 has native support for SmartAppBanner)
 	// - running on standalone mode
 	// - user dismissed banner
+	var isClosed = cookie.get('smartbanner-closed');
+	var isInstalled = cookie.get('smartbanner-installed');
 	if (!this.type
 		|| ( this.type === 'ios' && agent.browser.name === 'Mobile Safari' && isWebview(navigator.userAgent)/* && parseInt(agent.os.version) >= 6*/)
 		|| navigator.standalone
-		|| cookie.get('smartbanner-closed')
-		|| cookie.get('smartbanner-installed')) {
+		|| (isClosed && isClosed === this.options.uniqueId)
+		|| (isInstalled && isInstalled === this.options.uniqueId)) {
 		return;
 	}
 
@@ -154,14 +156,14 @@ SmartBanner.prototype = {
 	},
 	close: function() {
 		this.hide();
-		cookie.set('smartbanner-closed', 'true', {
+		cookie.set('smartbanner-closed', this.options.uniqueId, {
 			path: '/',
 			expires: new Date(+new Date() + this.options.daysHidden * 1000 * 60 * 60 * 24)
 		});
 	},
 	install: function() {
 		this.hide();
-		cookie.set('smartbanner-installed', 'true', {
+		cookie.set('smartbanner-installed', this.options.uniqueId, {
 			path: '/',
 			expires: new Date(+new Date() + this.options.daysReminder * 1000 * 60 * 60 * 24)
 		});
