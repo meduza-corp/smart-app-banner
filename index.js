@@ -97,7 +97,7 @@ SmartBanner.prototype = {
 	constructor: SmartBanner,
 
 	create: function() {
-		var link = this.getStoreLink();
+		var link = this.options.link[this.type];
 		var inStore = this.options.price[this.type] + ' - ' + this.options.store[this.type];
 		var icon;
 
