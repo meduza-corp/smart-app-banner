@@ -74,8 +74,11 @@ var SmartBanner = function(options) {
 	// - user dismissed banner
 	var isClosed = cookie.get('smartbanner-closed-' + this.options.uniqueId);
 	var isInstalled = cookie.get('smartbanner-installed-' + this.options.uniqueId);
+	var standalone = window.navigator.standalone;
+  var userAgent = window.navigator.userAgent.toLowerCase();
+  var safari = /safari/.test( userAgent );
 	if (!this.type
-		|| ( this.type === 'ios' && agent.browser.name === 'Mobile Safari' && !window.navigator.standalone/* && parseInt(agent.os.version) >= 6*/)
+		|| ( this.type === 'ios' && !window.navigator.standalone && !safari/* && parseInt(agent.os.version) >= 6*/)
 		|| navigator.standalone
 		|| isClosed
 		|| isInstalled) {
