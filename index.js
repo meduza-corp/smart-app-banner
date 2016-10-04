@@ -130,7 +130,10 @@ SmartBanner.prototype = {
 						'</div>';
 
 		//there isn’t neccessary a body
-		if (doc.body) {
+		if (this.options.setup) {
+			this.options.setup(sb);
+		}
+		else if (doc.body) {
 			doc.body.appendChild(sb);
 		}
 		else if (doc) {
