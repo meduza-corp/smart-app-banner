@@ -78,7 +78,7 @@ var SmartBanner = function(options) {
   var userAgent = window.navigator.userAgent.toLowerCase();
   var safari = /safari/.test( userAgent );
 	if (!this.type
-		|| ( this.type === 'ios' && !window.navigator.standalone && !safari/* && parseInt(agent.os.version) >= 6*/)
+		|| ( this.type === 'ios' && !agent.browser.name === 'Mobile Safari' && !window.navigator.standalone/* && parseInt(agent.os.version) >= 6*/)
 		|| navigator.standalone
 		|| isClosed
 		|| isInstalled) {
