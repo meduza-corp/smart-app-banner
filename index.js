@@ -121,7 +121,7 @@ SmartBanner.prototype = {
 		var theme = this.options.theme || this.type;
 
 		sb.className = 'smartbanner' + ' smartbanner-' + theme;
-		sb.innerHTML = '<div class="smartbanner-container">' +
+		sb.innerHTML = '<a href="'+link+'" class="smartbanner-container">' +
 							'<a href="javascript:void(0);" class="smartbanner-close">&times;</a>' +
 							'<span class="smartbanner-icon" style="background-image: url('+icon+')"></span>' +
 							'<div class="smartbanner-info">' +
@@ -132,7 +132,7 @@ SmartBanner.prototype = {
 							'<a href="'+link+'" class="smartbanner-button">' +
 								'<span class="smartbanner-button-text">'+this.options.button+'</span>' +
 							'</a>' +
-						'</div>';
+						'</a>';
 
 		//there isn’t neccessary a body
 		if (this.options.setup) {
