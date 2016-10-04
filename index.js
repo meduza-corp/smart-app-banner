@@ -72,13 +72,13 @@ var SmartBanner = function(options) {
 	// - user is on mobile safari for ios 6 or greater (iOS >= 6 has native support for SmartAppBanner)
 	// - running on standalone mode
 	// - user dismissed banner
-	var isClosed = cookie.get('smartbanner-closed');
-	var isInstalled = cookie.get('smartbanner-installed');
+	var isClosed = cookie.get('smartbanner-closed-' + this.options.uniqueId);
+	var isInstalled = cookie.get('smartbanner-installed-' + this.options.uniqueId);
 	if (!this.type
 		|| ( this.type === 'ios' && agent.browser.name === 'Mobile Safari' && isWebview(navigator.userAgent)/* && parseInt(agent.os.version) >= 6*/)
 		|| navigator.standalone
-		|| (isClosed && isClosed === this.options.uniqueId)
-		|| (isInstalled && isInstalled === this.options.uniqueId)) {
+		|| isClosed
+		|| isInstalled) {
 		return;
 	}
 
@@ -156,14 +156,14 @@ SmartBanner.prototype = {
 	},
 	close: function() {
 		this.hide();
-		cookie.set('smartbanner-closed', this.options.uniqueId, {
+		cookie.set('smartbanner-closed-' + this.options.uniqueId, 'true', {
 			path: '/',
 			expires: new Date(+new Date() + this.options.daysHidden * 1000 * 60 * 60 * 24)
 		});
 	},
 	install: function() {
 		this.hide();
-		cookie.set('smartbanner-installed', this.options.uniqueId, {
+		cookie.set('smartbanner-installed-' + this.options.uniqueId, 'true', {
 			path: '/',
 			expires: new Date(+new Date() + this.options.daysReminder * 1000 * 60 * 60 * 24)
 		});
