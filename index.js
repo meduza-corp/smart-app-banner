@@ -13,14 +13,14 @@ var userLang = userLangAttribute.slice(-2) || 'us';
 // platform dependent functionality
 var mixins = {
 	ios: {
-		appMeta: 'apple-itunes-app',
+		appMeta: 'incorrect-apple-itunes-app',
 		iconRels: ['apple-touch-icon-precomposed', 'apple-touch-icon'],
 		getStoreLink: function() {
 			return 'https://itunes.apple.com/' + this.options.appStoreLanguage + '/app/id' + this.appId;
 		}
 	},
 	android: {
-		appMeta: 'google-play-app',
+		appMeta: 'incorrect-google-play-app',
 		iconRels: ['android-touch-icon', 'apple-touch-icon-precomposed', 'apple-touch-icon'],
 		getStoreLink: function() {
 			return 'http://play.google.com/store/apps/details?id=' + this.appId;
