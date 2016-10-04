@@ -102,7 +102,7 @@ SmartBanner.prototype = {
 		var icon;
 
 		if (this.options.icon) {
-			icon = this.options.icon;
+			icon = this.options.icon[this.type];
 		} else {
 			for (var i = 0; i < this.iconRels.length; i++) {
 				var rel = q('link[rel="' + this.iconRels[i] + '"]');
